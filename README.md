@@ -15,5 +15,5 @@ Après avoir récupéré le projet, dans le dossier Ubiquity :
 ```
 composer install
 Ubiquity init-cache
-Ubiquityu serve
+Ubiquity serve
 ```
