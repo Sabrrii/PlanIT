@@ -31,11 +31,6 @@ class Permission{
 	#[JoinColumn(className: "models\\Room",name: "idRoom")]
 	private $room;
 
-	
-	#[ManyToOne()]
-	#[JoinColumn(className: "models\\User_",name: "idUser")]
-	private $user_;
-
 	public function getIdRoom(){
 		return $this->idRoom;
 	}
@@ -68,18 +63,16 @@ class Permission{
 		$this->room=$room;
 	}
 
-	public function getUser_(){
-		return $this->user_;
-	}
-
-	public function setUser_($user_){
-		$this->user_=$user_;
-	}
-
 	 public function __toString(){
 		return ($this->rValue??'no value').'';
 	}
 
+	public function getUser_(){
+		return $this->user_;
+	}
+	public function setUser_($user_){
+		$this->user_=$user_;
+	}
 	public function getUser(){
 		return $this->user;
 	}
