@@ -67,16 +67,16 @@
         },
         {
             "name": "phpmv/ubiquity-security",
-            "version": "0.0.9",
+            "version": "0.0.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpMv/ubiquity-security.git",
-                "reference": "aef6416247a9b1b8ce66bf68f8f547adec17ce43"
+                "reference": "73eb974b5b16eaa36a50eb763692cd1c21605835"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpMv/ubiquity-security/zipball/aef6416247a9b1b8ce66bf68f8f547adec17ce43",
-                "reference": "aef6416247a9b1b8ce66bf68f8f547adec17ce43",
+                "url": "https://api.github.com/repos/phpMv/ubiquity-security/zipball/73eb974b5b16eaa36a50eb763692cd1c21605835",
+                "reference": "73eb974b5b16eaa36a50eb763692cd1c21605835",
                 "shasum": ""
             },
             "require": {
@@ -115,9 +115,9 @@
             ],
             "support": {
                 "issues": "https://github.com/phpMv/ubiquity-security/issues",
-                "source": "https://github.com/phpMv/ubiquity-security/tree/0.0.9"
+                "source": "https://github.com/phpMv/ubiquity-security/tree/0.0.8"
             },
-            "time": "2023-03-27T13:27:00+00:00"
+            "time": "2023-03-24T18:32:33+00:00"
         },
         {
             "name": "symfony/polyfill-ctype",
@@ -1260,16 +1260,16 @@
         },
         {
             "name": "symfony/process",
-            "version": "v5.4.22",
+            "version": "v5.4.21",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/process.git",
-                "reference": "4b850da0cc3a2a9181c1ed407adbca4733dc839b"
+                "reference": "d4ce417ebcb0b7d090b4c178ed6d3accc518e8bd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/process/zipball/4b850da0cc3a2a9181c1ed407adbca4733dc839b",
-                "reference": "4b850da0cc3a2a9181c1ed407adbca4733dc839b",
+                "url": "https://api.github.com/repos/symfony/process/zipball/d4ce417ebcb0b7d090b4c178ed6d3accc518e8bd",
+                "reference": "d4ce417ebcb0b7d090b4c178ed6d3accc518e8bd",
                 "shasum": ""
             },
             "require": {
@@ -1302,7 +1302,7 @@
             "description": "Executes commands in sub-processes",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/process/tree/v5.4.22"
+                "source": "https://github.com/symfony/process/tree/v5.4.21"
             },
             "funding": [
                 {
@@ -1318,7 +1318,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-03-06T21:29:33+00:00"
+            "time": "2023-02-21T19:46:44+00:00"
         },
         {
             "name": "vlucas/phpdotenv",

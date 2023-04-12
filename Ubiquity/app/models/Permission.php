@@ -8,6 +8,7 @@ use Ubiquity\attributes\items\Table;
 use Ubiquity\attributes\items\ManyToOne;
 use Ubiquity\attributes\items\JoinColumn;
 
+#[\AllowDynamicProperties()]
 #[Table(name: "permission")]
 class Permission{
 	
@@ -31,53 +32,64 @@ class Permission{
 	#[JoinColumn(className: "models\\Room",name: "idRoom")]
 	private $room;
 
+	
+	#[ManyToOne()]
+	#[JoinColumn(className: "models\\User",name: "idUser")]
+	private $user;
+
+
 	public function getIdRoom(){
 		return $this->idRoom;
 	}
+
 
 	public function setIdRoom($idRoom){
 		$this->idRoom=$idRoom;
 	}
 
+
 	public function getIdUser(){
 		return $this->idUser;
 	}
+
 
 	public function setIdUser($idUser){
 		$this->idUser=$idUser;
 	}
 
+
 	public function getRValue(){
 		return $this->rValue;
 	}
+
 
 	public function setRValue($rValue){
 		$this->rValue=$rValue;
 	}
 
+
 	public function getRoom(){
 		return $this->room;
 	}
+
 
 	public function setRoom($room){
 		$this->room=$room;
 	}
 
-	 public function __toString(){
-		return ($this->rValue??'no value').'';
-	}
 
-	public function getUser_(){
-		return $this->user_;
-	}
-	public function setUser_($user_){
-		$this->user_=$user_;
-	}
 	public function getUser(){
 		return $this->user;
 	}
+
+
 	public function setUser($user){
 		$this->user=$user;
+	}
+
+
+	 public function __toString(){
+		return ($this->rValue??'no value').'';
 	}
 
 }

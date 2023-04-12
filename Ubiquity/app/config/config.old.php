@@ -1,18 +1,18 @@
 <?php
 return array(
-	"siteUrl"=>"http://127.0.0.1:8090/",
+	"siteUrl"=>"http://127.0.0.1/padlet/public/",
 	"database"=>[
 			"type"=>"mysql",
 			"wrapper"=>"Ubiquity\\db\\providers\\pdo\\PDOWrapper",
-			"dbName"=>"planitpoker",
+			"dbName"=>getenv('DB_NAME'),
 			"serverName"=>"127.0.0.1",
 			"port"=>"3306",
-			"user"=>"root",
-			"password"=>"",
+			"user"=>getenv('DB_USER'),
+			"password"=>getenv('DB_PASS'),
 			"options"=>[],
 			"cache"=>false
 			],
-	"sessionName"=>"S1234567890",
+	"sessionName"=>"padlet",
 	"namespaces"=>[],
 	"templateEngine"=>"\\Ubiquity\\views\\engine\\twig\\Twig",
 	"templateEngineOptions"=>[
@@ -20,13 +20,7 @@ return array(
 			],
 	"test"=>false,
 	"debug"=>false,
-	"logger"=>function (){
-		return new \Ubiquity\log\libraries\UMonolog(array (
-  'host' => '127.0.0.1',
-  'port' => 8090,
-  'sessionName' => 'S1234567890',
-)['sessionName'], \Monolog\Logger::INFO);
-	},
+	"logger"=>function (){return new \Ubiquity\log\libraries\UMonolog("padlet",\Monolog\Logger::INFO);},
 	"di"=>[
 			"@exec"=>[
 					"jquery"=>function ($controller){
@@ -44,14 +38,5 @@ return array(
 			"controllers"=>"controllers",
 			"rest"=>""
 			],
-	"encryption_key"=>getenv('encryption_key'),
-	"app.env"=>"dev",
-	"onError"=>function ($code, $message = NULL, $controllerInstance = NULL){
-				switch ($code) {
-					case 404:
-					case 500:
-						throw new \Exception($message);
-						break;
-				}
-			}
+	"encryption_key"=>getenv('encryption_key')
 	);
