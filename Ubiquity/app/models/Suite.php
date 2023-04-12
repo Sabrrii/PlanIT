@@ -16,6 +16,11 @@ class Suite{
 	private $id;
 
 	
+	#[Column(name: "name",nullable: true,dbType: "varchar(50)")]
+	#[Validator(type: "length",constraints: ["max"=>"50"])]
+	private $name;
+
+	
 	#[Column(name: "public",nullable: true,dbType: "tinyint(1)")]
 	#[Validator(type: "isBool",constraints: [])]
 	private $public;
@@ -23,11 +28,6 @@ class Suite{
 	
 	#[Column(name: "suitevalues",nullable: true,dbType: "text")]
 	private $suitevalues;
-
-	
-	#[Column(name: "name",nullable: true,dbType: "varchar(50)")]
-	#[Validator(type: "length",constraints: ["max"=>"50"])]
-	private $name;
 
 	
 	#[OneToMany(mappedBy: "suite",className: "models\\Room")]
@@ -45,6 +45,14 @@ class Suite{
 		$this->id=$id;
 	}
 
+	public function getName(){
+		return $this->name;
+	}
+
+	public function setName($name){
+		$this->name=$name;
+	}
+
 	public function getPublic(){
 		return $this->public;
 	}
@@ -59,14 +67,6 @@ class Suite{
 
 	public function setSuitevalues($suitevalues){
 		$this->suitevalues=$suitevalues;
-	}
-
-	public function getName(){
-		return $this->name;
-	}
-
-	public function setName($name){
-		$this->name=$name;
 	}
 
 	public function getRooms(){
