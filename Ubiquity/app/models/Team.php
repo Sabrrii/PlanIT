@@ -11,6 +11,7 @@ use Ubiquity\attributes\items\JoinColumn;
 use Ubiquity\attributes\items\ManyToMany;
 use Ubiquity\attributes\items\JoinTable;
 
+#[\AllowDynamicProperties()]
 #[Table(name: "team")]
 class Team{
 	
@@ -43,29 +44,36 @@ class Team{
 		$this->users = [];
 	}
 
+
 	public function getId(){
 		return $this->id;
 	}
+
 
 	public function setId($id){
 		$this->id=$id;
 	}
 
+
 	public function getName(){
 		return $this->name;
 	}
+
 
 	public function setName($name){
 		$this->name=$name;
 	}
 
+
 	public function getRooms(){
 		return $this->rooms;
 	}
 
+
 	public function setRooms($rooms){
 		$this->rooms=$rooms;
 	}
+
 
 	 public function addToRooms($room){
 		$this->rooms[]=$room;
@@ -76,40 +84,29 @@ class Team{
 		return $this->user;
 	}
 
+
 	public function setUser($user){
 		$this->user=$user;
 	}
+
 
 	public function getUsers(){
 		return $this->users;
 	}
 
+
 	public function setUsers($users){
 		$this->users=$users;
 	}
+
 
 	 public function addUser($user){
 		$this->users[]=$user;
 	}
 
+
 	 public function __toString(){
 		return ($this->name??'no value').'';
-	}
-
-	public function getUser_(){
-		return $this->user_;
-	}
-	public function setUser_($user_){
-		$this->user_=$user_;
-	}
-	public function getUser_s(){
-		return $this->user_s;
-	}
-	public function setUser_s($user_s){
-		$this->user_s=$user_s;
-	}
-	 public function addUser_($user_){
-		$this->user_s[]=$user_;
 	}
 
 }
