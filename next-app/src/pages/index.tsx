@@ -9,7 +9,7 @@ import {ApiCallSuite} from "@/pages/api/Suite"
 
 
 export default function Home() {
-    //Variable qui récupere les données de l'API ,ICI des objets de type user
+  /*  //Variable qui récupere les données de l'API ,ICI des objets de type user
     const tab = ApiCallSuite();
     let [suite,setSuite]=useState<any>([]);
     const users= ApiCall();
@@ -23,15 +23,18 @@ export default function Home() {
   return (
     <>
          <main>
-             {/*Foreach JSON qui parcours les objets de type user et les affiches dans un textarea*/}
+             {/!*Foreach JSON qui parcours les objets de type user et les affiches dans un textarea*!/}
              {user.map((p: any) => {
                  return <textarea key={p.id}>{p.username},{p.email}</textarea>
              })}
-             {/*affichage test des tableau*/}
+             {/!*affichage test des tableau*!/}
              {suite.map((item:any)=>{
                  return item.suitevalues;
              })}
          </main>
     </>
-  )
+  )*/
+
+
+    
 }

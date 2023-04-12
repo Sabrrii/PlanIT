@@ -25,7 +25,9 @@ const SignUpForm = () => {
     };
 
 
-
+//*  La vérification des champs login et email se fait via un trigger dans la base de données qui vérifie si le login ou l'email existe déjà
+//*  la verif peux etre faite cote client aussi ,mais j'ai des problemes a bien la mettre en place avec la redirection
+//*  donc pour l'instant ,il y'a seulement cote serveur
     return (
         <form  onSubmit={()=>signUp(SignUpForm)} method={"Post"}  className={styles.box} action="/">
             <label className={styles.label}>
