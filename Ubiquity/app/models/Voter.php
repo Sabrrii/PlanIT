@@ -31,11 +31,6 @@ class Voter{
 	#[JoinColumn(className: "models\\Story",name: "idStory")]
 	private $story;
 
-	
-	#[ManyToOne()]
-	#[JoinColumn(className: "models\\User_",name: "idUser")]
-	private $user_;
-
 	public function getIdUser(){
 		return $this->idUser;
 	}
@@ -68,18 +63,16 @@ class Voter{
 		$this->story=$story;
 	}
 
-	public function getUser_(){
-		return $this->user_;
-	}
-
-	public function setUser_($user_){
-		$this->user_=$user_;
-	}
-
 	 public function __toString(){
 		return ($this->points??'no value').'';
 	}
 
+	public function getUser_(){
+		return $this->user_;
+	}
+	public function setUser_($user_){
+		$this->user_=$user_;
+	}
 	public function getUser(){
 		return $this->user;
 	}

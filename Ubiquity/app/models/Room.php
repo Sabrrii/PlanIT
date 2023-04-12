@@ -31,6 +31,11 @@ class Room{
 	private $points;
 
 	
+	#[Column(name: "idOwner",dbType: "int(11)")]
+	#[Validator(type: "notNull",constraints: [])]
+	private $idOwner;
+
+	
 	#[OneToMany(mappedBy: "room",className: "models\\Configuration")]
 	private $configurations;
 
@@ -51,11 +56,6 @@ class Room{
 	#[ManyToOne()]
 	#[JoinColumn(className: "models\\Team",name: "idTeam",nullable: true)]
 	private $team;
-
-	
-	#[ManyToOne()]
-	#[JoinColumn(className: "models\\User_",name: "idOwner")]
-	private $user_;
 
 	 public function __construct(){
 		$this->configurations = [];
@@ -93,6 +93,16 @@ class Room{
 
 	public function setPoints($points){
 		$this->points=$points;
+	}
+
+
+	public function getIdOwner(){
+		return $this->idOwner;
+	}
+
+
+	public function setIdOwner($idOwner){
+		$this->idOwner=$idOwner;
 	}
 
 	public function getConfigurations(){
@@ -150,18 +160,16 @@ class Room{
 		$this->team=$team;
 	}
 
-	public function getUser_(){
-		return $this->user_;
-	}
-
-	public function setUser_($user_){
-		$this->user_=$user_;
-	}
-
 	 public function __toString(){
 		return ($this->name??'no value').'';
 	}
 
+	public function getUser_(){
+		return $this->user_;
+	}
+	public function setUser_($user_){
+		$this->user_=$user_;
+	}
 	public function getUser(){
 		return $this->user;
 	}
