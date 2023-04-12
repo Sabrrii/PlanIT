@@ -30,13 +30,13 @@ class Team{
 
 	
 	#[ManyToOne()]
-	#[JoinColumn(className: "models\\User_",name: "idCreator")]
-	private $user_;
+	#[JoinColumn(className: "models\\User",name: "idCreator")]
+	private $user;
 
 	
-	#[ManyToMany(targetEntity: "models\\User_",inversedBy: "teams")]
-	#[JoinTable(name: "team_users",inverseJoinColumns: ["name"=>"idUser","referencedColumnName"=>"id"])]
-	private $user_s;
+	#[ManyToMany(targetEntity: "models\\User",inversedBy: "teams")]
+	#[JoinTable(name: "team_users")]
+	private $users;
 
 	 public function __construct(){
 		$this->rooms = [];
@@ -72,44 +72,44 @@ class Team{
 		$room->setTeam($this);
 	}
 
-	public function getUser_(){
-		return $this->user_;
+	public function getUser(){
+		return $this->user;
 	}
 
-	public function setUser_($user_){
-		$this->user_=$user_;
+	public function setUser($user){
+		$this->user=$user;
 	}
 
-	public function getUser_s(){
-		return $this->user_s;
+	public function getUsers(){
+		return $this->users;
 	}
 
-	public function setUser_s($user_s){
-		$this->user_s=$user_s;
+	public function setUsers($users){
+		$this->users=$users;
 	}
 
-	 public function addUser_($user_){
-		$this->user_s[]=$user_;
+	 public function addUser($user){
+		$this->users[]=$user;
 	}
 
 	 public function __toString(){
 		return ($this->name??'no value').'';
 	}
 
-	public function getUser(){
-		return $this->user;
+	public function getUser_(){
+		return $this->user_;
 	}
-	public function setUser($user){
-		$this->user=$user;
+	public function setUser_($user_){
+		$this->user_=$user_;
 	}
-	public function getUsers(){
-		return $this->users;
+	public function getUser_s(){
+		return $this->user_s;
 	}
-	public function setUsers($users){
-		$this->users=$users;
+	public function setUser_s($user_s){
+		$this->user_s=$user_s;
 	}
-	 public function addUser($user){
-		$this->users[]=$user;
+	 public function addUser_($user_){
+		$this->user_s[]=$user_;
 	}
 
 }
