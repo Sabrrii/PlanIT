@@ -37,7 +37,6 @@ class Permission{
 	#[JoinColumn(className: "models\\User",name: "idUser")]
 	private $user;
 
-
 	public function getIdRoom(){
 		return $this->idRoom;
 	}
@@ -81,7 +80,6 @@ class Permission{
 	public function getUser(){
 		return $this->user;
 	}
-
 
 	public function setUser($user){
 		$this->user=$user;

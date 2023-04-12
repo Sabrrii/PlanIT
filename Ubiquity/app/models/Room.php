@@ -64,7 +64,6 @@ class Room {
 	#[JoinColumn(className: "models\\Team", name: "idTeam")]
 	private $team;
 
-
 	#[ManyToOne()]
 	#[JoinColumn(className: "models\\User", name: "idOwner")]
 	private $user;
@@ -193,7 +192,6 @@ class Room {
 	public function setTeam($team) {
 		$this->team = $team;
 	}
-
 
 	public function getUser() {
 		return $this->user;

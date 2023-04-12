@@ -79,7 +79,6 @@ class Suite{
 		$this->suitevalues=$suitevalues;
 	}
 
-
 	public function getRooms(){
 		return $this->rooms;
 	}

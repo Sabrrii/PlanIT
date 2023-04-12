@@ -39,7 +39,6 @@ class Team{
 	#[JoinTable(name: "team_users")]
 	private $users;
 
-
 	 public function __construct(){
 		$this->rooms = [];
 		$this->users = [];
@@ -80,7 +79,6 @@ class Team{
 		$this->rooms[]=$room;
 		$room->setTeam($this);
 	}
-
 
 	public function getUser(){
 		return $this->user;
