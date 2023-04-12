@@ -10,6 +10,7 @@ use Ubiquity\attributes\items\OneToMany;
 use Ubiquity\attributes\items\ManyToMany;
 use Ubiquity\attributes\items\JoinTable;
 
+#[\AllowDynamicProperties()]
 #[Table(name: "user")]
 class User{
 	
@@ -39,6 +40,7 @@ class User{
 	
 	#[Column(name: "completeName",nullable: true,dbType: "varchar(255)")]
 	#[Validator(type: "length",constraints: ["max"=>"255"])]
+	#[Transformer(name: "crypt")]
 	private $completeName;
 
 	

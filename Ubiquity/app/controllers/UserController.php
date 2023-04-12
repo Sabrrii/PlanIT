@@ -2,7 +2,7 @@
 namespace controllers;
 
 use Ajax\php\ubiquity\JsUtils;
-use models\User;
+use models\User_;
 use Ubiquity\attributes\items\router\Get;
 use Ubiquity\attributes\items\router\Post;
 use Ubiquity\attributes\items\router\Route;
@@ -23,17 +23,17 @@ class UserController extends \controllers\ControllerBase {
     }
 
     public function index(){
-	    $users=DAO::getAll(User::class);
+	    $users=DAO::getAll(User_::class);
 		$this->jquery->renderView("UserController/index.html",compact('users'));
 	}
 
     public function one(int $id){
-        $user=DAO::getById(User::class,$id);
+        $user=DAO::getById(User_::class,$id);
         $this->loadDefaultView(compact('user'));
     }
     #[Get]
     public function add(){
-        $this->loadDefaultView(['user'=>new User()]);
+        $this->loadDefaultView(['user'=>new User_()]);
     }
 
     #[Post]
@@ -48,14 +48,14 @@ class UserController extends \controllers\ControllerBase {
     }
 
     public function remove(int $id){
-        if(DAO::deleteById(User::class,$id)!=1){
+        if(DAO::deleteById(User_::class,$id)!=1){
             echo "<div class='ui error message'>Erreur !</div>";
         }
         $this->index();
     }
 
     public function edit(int $id){
-        $user=DAO::getById(User::class,$id);
+        $user=DAO::getById(User_::class,$id);
         $this->loadView("UserController/add.html",compact('user'));
     }
 
