@@ -49,6 +49,7 @@ class Suite{
 		$this->id=$id;
 	}
 
+
 	public function getName(){
 		return $this->name;
 	}
@@ -77,6 +78,7 @@ class Suite{
 	public function setSuitevalues($suitevalues){
 		$this->suitevalues=$suitevalues;
 	}
+
 
 	public function getRooms(){
 		return $this->rooms;

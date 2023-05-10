@@ -37,6 +37,7 @@ class Voter{
 	#[JoinColumn(className: "models\\User",name: "idUser")]
 	private $user;
 
+
 	public function getIdUser(){
 		return $this->idUser;
 	}
@@ -75,6 +76,7 @@ class Voter{
 	public function setStory($story){
 		$this->story=$story;
 	}
+
 
 	public function getUser(){
 		return $this->user;

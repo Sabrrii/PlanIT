@@ -39,6 +39,7 @@ class Team{
 	#[JoinTable(name: "team_users")]
 	private $users;
 
+
 	 public function __construct(){
 		$this->rooms = [];
 		$this->users = [];
@@ -80,21 +81,26 @@ class Team{
 		$room->setTeam($this);
 	}
 
+
 	public function getUser(){
 		return $this->user;
 	}
+
 
 	public function setUser($user){
 		$this->user=$user;
 	}
 
+
 	public function getUsers(){
 		return $this->users;
 	}
 
+
 	public function setUsers($users){
 		$this->users=$users;
 	}
+
 
 	 public function addUser($user){
 		$this->users[]=$user;
@@ -104,4 +110,5 @@ class Team{
 	 public function __toString(){
 		return ($this->name??'no value').'';
 	}
+
 }

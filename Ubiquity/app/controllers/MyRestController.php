@@ -107,7 +107,7 @@ class MyRestController extends \Ubiquity\controllers\rest\api\json\JsonRestContr
 
 	protected function getRestServer(): RestServer {
 		$srv = new RestServer($this->config);
-		$srv->setAllowedOrigins(['http://127.0.0.1:3000', 'http://localhost:3000']);
+		$srv->setAllowedOrigins(['http://127.0.0.1:3000']);
 		TransformersManager::startProd('toView');
 		return $srv;
 	}
@@ -123,8 +123,7 @@ class MyRestController extends \Ubiquity\controllers\rest\api\json\JsonRestContr
 	public function connect() {
 		if (URequest::has('username')) {
 			DAO::$useTransformers = false;
-
-			$user = DAO::getOne(User::class, 'email= ?', false, [URequest::post('login')]);
+			$user = DAO::getOne(User::class, 'username= ?', false, [URequest::post('username')]);
 			DAO::$useTransformers = true;
 			if ($user && URequest::password_verify('password', $user->getPassword())) {
 				$tokenInfos = $this->server->connect();
