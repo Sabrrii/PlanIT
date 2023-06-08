@@ -16,12 +16,12 @@ const url = 'http://127.0.0.1:8090/api/room'
 
 
 //Fonction getRooms qui permet de retourner une promesse depuis telle adresse des donées que l'on va convertir en tableau d'object vers JSON en tableau de données
-export default function getRooms(){
-    return new Promise<room>((resolve) =>{
+/*export default function getRooms(){
+  /*  return new Promise<room>((resolve) =>{
        fetch('http://127.0.0.1:8090/api/room').then((response) => {
             resolve(response.json().then((data) => data))
         })
-    })}
+    })}*/
 
 /*  /*      fetch('http://127.0.0.1:8090/api/room',{ method: "GET", mode: 'cors', headers: { 'Content-Type': 'application/json','Access-Control-Allow-Origin': '*'}})
             .then(response => response.text())
@@ -38,7 +38,7 @@ export default function getRooms(){
     })
 
 }*/
-/*
+
 export default async function getRooms() {
     return fetch('http://127.0.0.1:8090/api/room')
         .then(response => response.json())
@@ -46,4 +46,3 @@ export default async function getRooms() {
             return responseJSON
         })
 }
-*/
