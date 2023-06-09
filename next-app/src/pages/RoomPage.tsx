@@ -1,11 +1,12 @@
 import { useRouter } from 'next/router';
-import { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 
 type Room = {
     id: number;
     name: string;
     description: string;
     points: number;
+    uuid: string;
 };
 
 const CleanURLComponent = () => {
@@ -24,32 +25,67 @@ const CleanURLComponent = () => {
 const Room = () => {
 
    const router = useRouter();
-   let id  = router.query.idRoom as string;
+   let idRoom  = router.query.idRoom as string;
+   let idUser = router.query.idUser as string;
 
-    const [room, setRoom] = useState<Room>();
-    console.log(id);
+    const [room, setRoom] = useState<any>();
+    console.log("idRoom "+idRoom);
+    console.log("idUSer "+idUser);
     useEffect(() => {
         const fetchRoom = async () => {
-            const response = await fetch(`http://127.0.0.1:8090/api/room/${id}`);
+            const response = await fetch(`http://127.0.0.1:8090/api/room/${idRoom}`);
             const data = await response.json();
             setRoom(data);
             console.log(data);
         };
-        if (id) {
+        if (idRoom) {
             fetchRoom();
         }
-    }, [id]);
+    }, [idRoom]);
     console.log(room)
     if (!room) {
         return <div>Loading...</div>;
     }
 
+    function handleClick(uuid:any, id: any){
+        var jsonDatas = {uuid:uuid , idUser: idUser};
+        var url='http://127.0.0.1:8090/api/rooms/' + uuid + '/users/' + idUser;
+        fetch(url, {  // Enter your IP address here
+            method: 'DELETE',
+            mode: 'cors',
+            body: JSON.stringify(jsonDatas) // body data type must match "Content-Type" header
+        })
+        console.log(jsonDatas)
+        window.location.href = "http://localhost:3000/";
+
+    }
+
     return (
+       /* <div>
+            {room.map((item:any, index:number)=>{ //On parcours le state à l'aide de "map", on définit chaque clé du tableau sur item
+                    let UUID = item.uuid;
+                    return (
+                        <div key={item.id}>
+                            <h1 >{item.name}</h1>
+                            <p id={UUID}>UUID: {item.uuid}</p>
+                            <button onClick={
+                                ()=>handleClick(UUID,id)
+                            }>Se déconnecter de la room</button>
+                        </div>
+                    )
+                }
+            )
+            }
+        </div>*/
         <div>
-            <CleanURLComponent/>
+            <CleanURLComponent />
             <h1>{room.name}</h1>
-            <p>Description: {room.description}</p>
-            <p>Points : {room.points}</p>
+            <p>{room.description}</p>
+            <p>{room.points}</p>
+            <p>{room.uuid}</p>
+            <button onClick={
+                ()=>handleClick(room.uuid,idUser)
+            }>Se déconnecter de la room</button>
         </div>
     );
 };

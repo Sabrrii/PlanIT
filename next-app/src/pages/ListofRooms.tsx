@@ -21,10 +21,9 @@ export default function ListofRooms() {
 
         })
         console.log(jsonDatas)
-       // window.location.href="http://127.0.0.1:3000/RoomPage/"
         router.push({
             pathname: '/RoomPage',
-            query: { idRoom: idRoom },
+            query: { idRoom: idRoom,idUser: id },
         })
 
     }
