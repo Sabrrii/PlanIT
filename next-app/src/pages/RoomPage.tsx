@@ -46,7 +46,7 @@ const Room = () => {
     if (!room) {
         return <div>Loading...</div>;
     }
-
+    
     function handleClick(uuid:any, id: any){
         var jsonDatas = {uuid:uuid , idUser: idUser};
         var url='http://127.0.0.1:8090/api/rooms/' + uuid + '/users/' + idUser;
@@ -61,22 +61,6 @@ const Room = () => {
     }
 
     return (
-       /* <div>
-            {room.map((item:any, index:number)=>{ //On parcours le state à l'aide de "map", on définit chaque clé du tableau sur item
-                    let UUID = item.uuid;
-                    return (
-                        <div key={item.id}>
-                            <h1 >{item.name}</h1>
-                            <p id={UUID}>UUID: {item.uuid}</p>
-                            <button onClick={
-                                ()=>handleClick(UUID,id)
-                            }>Se déconnecter de la room</button>
-                        </div>
-                    )
-                }
-            )
-            }
-        </div>*/
         <div>
             <CleanURLComponent />
             <h1>{room.name}</h1>
