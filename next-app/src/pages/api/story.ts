@@ -18,6 +18,14 @@ export default function getStory() {
         })
     })
 }
+
+export  function getStoryFromRoom(idRoom:number) {
+    return fetch(`http://127.0.0.1:8090/api/story/${idRoom}`)
+        .then(response => response.json())
+        .then( responseJSON => {
+            return responseJSON
+        })
+}
     const CreateStoryForm = () => {
         // état local pour stocker les valeurs des champs du formulaire
         const [name, setName] = useState("");

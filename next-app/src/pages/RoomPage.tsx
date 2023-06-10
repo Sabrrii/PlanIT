@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router';
 import React, { useState, useEffect, useContext } from 'react';
+import {getOneSuite, Suite} from "./api/Suite";
 
 type Room = {
     id: number;
@@ -29,6 +30,10 @@ const Room = () => {
    let idUser = router.query.idUser as string;
 
     const [room, setRoom] = useState<any>();
+    const [suite, setSuite] = useState<Suite>({} as Suite);
+    const [story, setStory] = useState<any>();
+    const [users, setUsers] = useState<any>([]);
+
     console.log("idRoom "+idRoom);
     console.log("idUSer "+idUser);
     useEffect(() => {
@@ -36,13 +41,26 @@ const Room = () => {
             const response = await fetch(`http://127.0.0.1:8090/api/room/${idRoom}`);
             const data = await response.json();
             setRoom(data);
+            const dataSuite = getOneSuite(data.suite).then((res) => { setSuite(res) })
+            setUsers(JSON.parse(data.connectedUsers))
             console.log(data);
+            console.log(dataSuite);
         };
+
+
         if (idRoom) {
             fetchRoom();
         }
     }, [idRoom]);
-    console.log(room)
+
+    let suiteValues = [];
+    if (suite.suitevalues) {
+        suiteValues = JSON.parse(suite.suitevalues);
+    }
+    console.log("suiteValue "+ suiteValues)
+    console.log("room "+  room)
+    console.log("suite "+ suite)
+    console.log("users "+ users)
     if (!room) {
         return <div>Loading...</div>;
     }
@@ -61,16 +79,40 @@ const Room = () => {
     }
 
     return (
-        <div>
-            <CleanURLComponent />
-            <h1>{room.name}</h1>
-            <p>{room.description}</p>
-            <p>{room.points}</p>
-            <p>{room.uuid}</p>
-            <button onClick={
-                ()=>handleClick(room.uuid,idUser)
-            }>Se déconnecter de la room</button>
-        </div>
+        <>
+            <div>
+                <CleanURLComponent />
+                <h1> Nom de la Room: {room.name}</h1>
+                <h1> Suite: {suite.name}</h1>
+                <p>Description: {room.description}</p>
+                <p>POints : {room.points}</p>
+                <button onClick={
+                    ()=>handleClick(room.uuid,idUser)
+                }>Se déconnecter de la room</button>
+            </div>
+            <div>
+                <h1>Utilisateur connecté</h1>
+                {users.map((user: any, index: number) => {
+                    return (
+                        <div key={index}>
+                            <p>{user.username}</p>
+                        </div>
+                    )
+                })
+                }
+            </div>
+            {/*//Permet d'afficher les valeur de la suite dans la room
+            <div>
+                {suiteValues && suiteValues.map((value: any, index: number) => {
+                    return (
+                        <div key={index}>
+                            <p>{value}</p>
+                        </div>
+                    )
+                })
+                }
+            </div>*/}
+        </>
     );
 };
 
