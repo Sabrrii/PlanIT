@@ -2,7 +2,7 @@ import {useState} from "react";
 import {useRouter} from "next/router";
 import Link from "next/link";
 
-type Story = {
+export type Story = {
     id: number
     name: string
     description:string
@@ -19,12 +19,13 @@ export default function getStory() {
     })
 }
 
-export  function getStoryFromRoom(idRoom:number) {
-    return fetch(`http://127.0.0.1:8090/api/story/${idRoom}`)
-        .then(response => response.json())
-        .then( responseJSON => {
-            return responseJSON
-        })
+export async function getStoryFromRoom(idRoom:number) {
+    return new Promise<Story>((resolve)=>{
+        fetch(`http://127.0.0.1:8090/api/rooms/`+idRoom+`?include=storys`).then((response)=>{
+                resolve(response.json().then((data)=>data["storys"]))
+            }
+        )
+    })
 }
     const CreateStoryForm = () => {
         // état local pour stocker les valeurs des champs du formulaire

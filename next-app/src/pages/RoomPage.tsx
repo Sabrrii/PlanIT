@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 import React, { useState, useEffect, useContext } from 'react';
 import {getOneSuite, Suite} from "./api/Suite";
+import {getStoryFromRoom,Story} from "./api/Story";
 
 type Room = {
     id: number;
@@ -31,7 +32,7 @@ const Room = () => {
 
     const [room, setRoom] = useState<any>();
     const [suite, setSuite] = useState<Suite>({} as Suite);
-    const [story, setStory] = useState<any>();
+    const [story, setStory] = useState<any>([]);
     const [users, setUsers] = useState<any>([]);
 
     console.log("idRoom "+idRoom);
@@ -42,9 +43,10 @@ const Room = () => {
             const data = await response.json();
             setRoom(data);
             const dataSuite = getOneSuite(data.suite).then((res) => { setSuite(res) })
+            const dataStory= getStoryFromRoom(data.id).then((res) => { setStory(res) })
             setUsers(JSON.parse(data.connectedUsers))
             console.log(data);
-            console.log(dataSuite);
+            console.log(dataStory);
         };
 
 
@@ -57,10 +59,13 @@ const Room = () => {
     if (suite.suitevalues) {
         suiteValues = JSON.parse(suite.suitevalues);
     }
+
     console.log("suiteValue "+ suiteValues)
     console.log("room "+  room)
     console.log("suite "+ suite)
     console.log("users "+ users)
+    console.log("story  "+ story)
+
     if (!room) {
         return <div>Loading...</div>;
     }
@@ -97,6 +102,19 @@ const Room = () => {
                         <div key={index}>
                             <p>{user.username}</p>
                         </div>
+                    )
+                })
+                }
+            </div>
+            <div>
+                <h1>Story</h1>
+                {story.map((story: any, index: number) => {
+                    return (
+                        <tr>
+                            <td>Nom: {story.name}</td>
+                            <td>Desc: {story.description}</td>
+                            <td>Points: {story.points}</td>
+                        </tr>
                     )
                 })
                 }
