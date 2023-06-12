@@ -19,20 +19,21 @@ export default function Home() {
                 {!session && (
                 <>
                     Not signed in <br/>
-                    <button onClick={() => signIn()}>Sign in</button>
+                    <a href="http://127.0.0.1:3000/loginSign">Sign in</a>
                 </>
                 )}
                 {session && (
                     <>
-                        Signed in as {session.user?.email} <br/>
-                        <Link href="/api/auth/signout">
-                            <a>Sign out</a>
-                        </Link>
+                        Signed in as {session.user?.user.email} <br/>
+                        <div>
+                            <a href="/api/auth/signout">Sign out</a>
+                            <br/>
+                            <a href="http://127.0.0.1:3000/ListofRooms">Afficher la liste des rooms</a>
+                        </div>
                     </>
                 )}
                 <div>
                 </div>
-                <Sidebar></Sidebar>
                 <CreateButton></CreateButton>
             </main>
         </>
